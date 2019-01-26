@@ -21,7 +21,7 @@ namespace StockManager.Data.Data.Entities
         public int TotalQtyOut { get; set; }
         public int TotalQtyIn { get; set; }
         public string CreatedBy { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
     }

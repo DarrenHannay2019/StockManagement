@@ -13,8 +13,10 @@ namespace StockManager.Data.Data.Entities
         [Required]
         public int ReturnLineID { get; set; }
         public int ReturnID { get; set; }
+        [StringLength(30)]
         public string StockCode { get; set; }
         public int Qty { get; set; }
+        [DataType(DataType.Currency)]
         public double Value { get; set; }
     }
 }

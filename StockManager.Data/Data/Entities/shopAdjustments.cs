@@ -11,7 +11,7 @@ namespace StockManager.Data.Data.Entities
     {
         [Key]
         public int ShopAdjustID { get; set; }
-        StringLength(8)]
+        [StringLength(8)]
         public string ShopRef { get; set; }
         public string Reference { get; set; }
         public int TotalLossItems { get; set; }
@@ -21,6 +21,7 @@ namespace StockManager.Data.Data.Entities
         public DateTime MovementDate { get; set; }
         [StringLength(16)]
         public string CreatedBy { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -12,16 +12,19 @@ namespace StockManager.Data.Data.Entities
         [Key]
         [Required]
         public int ReturnID { get; set; }
+        [StringLength(8)]
         public string ShopRef { get; set; }
+        [StringLength(8)]
         public string WarehouseRef { get; set; }
         public string Reference { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime TransactionDate { get; set; }
         public int QtyReturned { get; set; }
-        public int CreatedBy { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(16)]
+        public string CreatedBy { get; set; }
+        [DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
     }
 }

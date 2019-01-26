@@ -39,6 +39,7 @@ namespace StockManager.Data.Data.Entities
         public string CreatedBy { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -12,7 +12,9 @@ namespace StockManager.Data.Data.Entities
         [Key]
         public int ShopAdjustmentLineID { get; set; }
         public int ShopAdjustmentsID { get; set; }
+        [StringLength(30)]
         public string StockCode { get; set; }
+        [StringLength(50)]
         public string MovementType { get; set; }
         public int Qty { get; set; }
         [Column(TypeName = "decimal(18,2)")]
