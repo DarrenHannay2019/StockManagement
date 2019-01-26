@@ -21,18 +21,18 @@ namespace StockManager.Data.Data.Entities
 
         public bool DeadCode { get; set; }
 
-        [DataType(DataType.Currency]
+        [DataType(DataType.Currency)]
         public double AmtTakes {get; set; }
 
         public int DeliveredQtyHangers { get; set; }
-        [DataType(DataType.Currency]
+        [DataType(DataType.Currency)]
         public double CostVal { get; set; }
 
         public bool ZeroQty { get; set; }
 
         [StringLength(16)]
         public string CreatedBy { get; set; }
-        [DataType(DataType.DateTime]
+        [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
     }
 }
