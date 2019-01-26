@@ -1,0 +1,143 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.Deliveries>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OurRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WarehouseRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Season)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalGarments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalHangers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalBoxes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NetAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryCharge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Commission)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VATAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrossAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Invoice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shipper)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShipperInvoice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OurRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WarehouseRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Season)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalGarments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalHangers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBoxes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VATAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrossAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipperInvoice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DeliveryID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DeliveryID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DeliveryID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

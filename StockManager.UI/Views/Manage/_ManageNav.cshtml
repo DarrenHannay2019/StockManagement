@@ -1,5 +1,7 @@
 ﻿@using StockManager.UI.Views.Manage
-@inject SignInManager<ApplicationUser> SignInManager
+@using StockManager.Data.Data.Entities;
+@using StockManager.Data.Data;
+@inject SignInManager<User> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

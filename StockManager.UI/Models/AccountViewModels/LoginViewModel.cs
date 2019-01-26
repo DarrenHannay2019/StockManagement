@@ -16,7 +16,7 @@ namespace StockManager.UI.Models.AccountViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
+        public string UserName { get; set; }
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
