@@ -13,13 +13,15 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.OurRef)
+                    @Html.ActionLink("Our Ref", "Index",new { sortOrder = ViewBag.OurRefSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SupplierRef)
+                    @Html.ActionLink("Supplier", "Index", new { sortOrder = ViewBag.SupplierRefSortParm })
+                  
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.WarehouseRef)
+                    @Html.ActionLink("Warehouse", "Index", new { sortOrder = ViewBag.WarehouseRefSortParm })
+                    
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Season)
@@ -49,7 +51,7 @@
                     @Html.DisplayNameFor(model => model.GrossAmount)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DeliveryDate)
+                    @Html.ActionLink("Delivery Date", "Index", new { sortOrder = ViewBag.DeliveryDateSortParm })
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Notes)

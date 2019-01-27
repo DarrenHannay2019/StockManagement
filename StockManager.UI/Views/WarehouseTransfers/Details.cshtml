@@ -1,0 +1,90 @@
+﻿@model StockManager.Data.Data.Entities.WarehouseTransfers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WarehouseTransfers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TransferDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FromWarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FromWarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ToWarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ToWarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalGarmentsQtyOut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalGarmentsQtyOut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalGarmentsQtyIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalGarmentsQtyIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBoxesQtyOut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalBoxesQtyOut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBoxesQtyIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalBoxesQtyIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalUnitsQtyOut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalUnitsQtyOut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalUnitsQtyIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalUnitsQtyIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.WarehouseTransferID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

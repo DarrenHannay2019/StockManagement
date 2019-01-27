@@ -24,7 +24,10 @@ namespace StockManager.Data.Migrations
                     {
                         WarehouseRef = "UNI",
                         WarehouseName = "Universal Warehouse",
-                        WarehouseType = Warehouse.WHType.Active
+                        WarehouseType = Warehouse.WHType.Active,
+                        CreatedBy ="Bob",
+                        CreatedDate = DateTime.Now
+                        
                     },
                     new Warehouse
                     {
@@ -36,9 +39,13 @@ namespace StockManager.Data.Migrations
                     {
                         WarehouseRef = "LONG",
                         WarehouseName = "Long-Term Warehouse",
-                        WarehouseType = Warehouse.WHType.Long
+                        WarehouseType = Warehouse.WHType.Long,
+                        CreatedBy ="Bob",
+                        CreatedDate = DateTime.Now
                     }
                 };
+                sMContext.Warehouse.AddRange(warehouses);
+                sMContext.SaveChangesAsync();
             }
             if(!sMContext.Supplier.Any())
             {

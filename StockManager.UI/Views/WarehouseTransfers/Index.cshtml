@@ -1,0 +1,101 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.WarehouseTransfers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reference)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TransferDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FromWarehouseRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToWarehouseRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalGarmentsQtyOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalGarmentsQtyIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalBoxesQtyOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalBoxesQtyIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalUnitsQtyOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalUnitsQtyIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransferDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromWarehouseRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToWarehouseRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalGarmentsQtyOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalGarmentsQtyIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBoxesQtyOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBoxesQtyIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalUnitsQtyOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalUnitsQtyIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WarehouseTransferID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WarehouseTransferID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WarehouseTransferID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

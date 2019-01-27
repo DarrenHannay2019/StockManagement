@@ -20,9 +20,43 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: Deliveries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
-            return View(await _context.PurchaseOrder.ToListAsync());
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.SupplierRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SPRefDes" : "SPRef";
+            ViewBag.WarehouseRefSortParm = String.IsNullOrEmpty(SortOrder) ? "WHRefDes" : "WHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var PurchaseOrders = from s in _context.PurchaseOrder
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.OurRef);
+                    break;
+                case "SPRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.SupplierRef);
+                    break;
+                case "WHRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.WarehouseRef);
+                    break;
+                case "SPRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.SupplierRef);
+                    break;
+                case "WHRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.WarehouseRef);
+                    break;
+                case "date_desc":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.DeliveryDate);
+                    break;
+                case "Date":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.DeliveryDate);
+                    break;
+                default:
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.DeliveryID);
+                    break;
+            }
+            return View(PurchaseOrders.ToList());
+            //return View(await _context.PurchaseOrder.ToListAsync());
         }
 
         // GET: Deliveries/Details/5
