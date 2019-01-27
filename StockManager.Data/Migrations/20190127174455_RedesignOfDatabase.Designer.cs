@@ -12,9 +12,10 @@ using System;
 namespace StockManager.Data.Migrations
 {
     [DbContext(typeof(SMContext))]
-    partial class SMContextModelSnapshot : ModelSnapshot
+    [Migration("20190127174455_RedesignOfDatabase")]
+    partial class RedesignOfDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,19 +205,6 @@ namespace StockManager.Data.Migrations
                     b.HasKey("DeliveryLinesID");
 
                     b.ToTable("PurchaseOrderLines");
-                });
-
-            modelBuilder.Entity("StockManager.Data.Data.Entities.Seasons", b =>
-                {
-                    b.Property<int>("SeasonID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("SeasonName")
-                        .HasMaxLength(60);
-
-                    b.HasKey("SeasonID");
-
-                    b.ToTable("Season");
                 });
 
             modelBuilder.Entity("StockManager.Data.Data.Entities.Settings", b =>

@@ -32,7 +32,7 @@ namespace StockManager.Data.Data
         public DbSet<StockManager.Data.Data.Entities.Warehouse> Warehouse { get; set; }
         public DbSet<StockManager.Data.Data.Entities.Shops> Shop { get; set; }
         public DbSet<StockManager.Data.Data.Entities.Stock> Stock { get; set; }
-
+        public DbSet<StockManager.Data.Data.Entities.Seasons> Season { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

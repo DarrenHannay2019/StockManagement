@@ -13,7 +13,7 @@ namespace StockManager.UI.Controllers
     public class DeliveriesController : Controller
     {
         private readonly SMContext _context;
-
+        public StockManager.Data.Data.Entities.DelliveryLines DelliveryLines { get; set; }
         public DeliveriesController(SMContext context)
         {
             _context = context;
@@ -31,7 +31,7 @@ namespace StockManager.UI.Controllers
             switch (SortOrder)
             {
                 case "OurRefDes":
-                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.OurRef);
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.StockCode);
                     break;
                 case "SPRefDes":
                     PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.SupplierRef);
@@ -102,6 +102,7 @@ namespace StockManager.UI.Controllers
         // GET: Deliveries/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var lines = _context.PurchaseOrderLines;
             if (id == null)
             {
                 return NotFound();

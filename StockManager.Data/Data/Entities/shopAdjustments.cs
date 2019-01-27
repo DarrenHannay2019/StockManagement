@@ -19,6 +19,13 @@ namespace StockManager.Data.Data.Entities
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime MovementDate { get; set; }
+        [StringLength(30)]
+        public string StockCode { get; set; }
+        [StringLength(50)]
+        public string MovementType { get; set; }
+        public int Qty { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Values { get; set; }
         [StringLength(16)]
         public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]

@@ -15,6 +15,8 @@ namespace StockManager.Data.Data.Entities
         public string FromWarehouseRef { get; set; }
         [StringLength(8)]
         public string ToWarehouseRef { get; set; }
+        [StringLength(8)]
+        public string StockCode { get; set; }
         public int TotalGarmentsQty { get; set; }
         public int TotalBoxesQty { get; set; }
         public int TotalUnitsQty { get; set; }

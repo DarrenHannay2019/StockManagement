@@ -10,7 +10,7 @@ namespace StockManager.Data.Data.Entities
         [Key]
         public int DeliveryID { get; set; }
         [StringLength(30)]
-        public string OurRef { get; set; }
+        public string StockCode { get; set; }
         [StringLength(8)]
         public string SupplierRef { get; set; }
         [StringLength(8)]
@@ -41,6 +41,6 @@ namespace StockManager.Data.Data.Entities
         public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
-
+       
     }
 }

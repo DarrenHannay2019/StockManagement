@@ -25,8 +25,11 @@ namespace StockManager.Data.Data.Entities
         public string DeliveryRef { get; set; }
 
         [Required]
-        public int TotHangers { get; set; }
+       
+        public string StockCode { get; set; }
 
+        [Required]
+        public int QtyHangers { get; set; }
         [Required]
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

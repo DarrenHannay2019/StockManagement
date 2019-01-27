@@ -17,13 +17,12 @@ namespace StockManager.Data.Data.Entities
         [StringLength(8)]
         public string FromWarehouseRef { get; set; }   
         [StringLength(8)]
-        public string ToWarehouseRef { get; set; }        
-        public int TotalGarmentsQtyOut { get; set; }
-        public int TotalGarmentsQtyIn { get; set; }
-        public int TotalBoxesQtyOut { get; set; }
-        public int TotalBoxesQtyIn { get; set; }
-        public int TotalUnitsQtyOut { get; set; }
-        public int TotalUnitsQtyIn { get; set; }
+        public string ToWarehouseRef { get; set; }
+        [StringLength(30)]
+        public string StockCode { get; set; }
+        public int TotalGarmentsQtyOut { get; set; }      
+        public int TotalBoxesQtyOut { get; set; }      
+        public int TotalUnitsQtyOut { get; set; }       
         [StringLength(16)]
         public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]        

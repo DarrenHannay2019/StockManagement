@@ -1,0 +1,81 @@
+﻿@model StockManager.Data.Data.Entities.WarehouseReturn
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>WarehouseReturn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FromWarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FromWarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ToWarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ToWarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StockCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StockCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalGarmentsQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalGarmentsQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBoxesQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalBoxesQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalUnitsQty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalUnitsQty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="WarehouseReturnID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -18,8 +18,9 @@ namespace StockManager.Data.Data.Entities
         public DateTime TransferDate { get; set; }
         public string FromShopRef { get; set; }
         public string ToShopRef { get; set; }
+        [StringLength(30)]
+        public string StockCode { get; set; }
         public int TotalQtyOut { get; set; }
-        public int TotalQtyIn { get; set; }
         public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

@@ -20,6 +20,8 @@ namespace StockManager.Data.Data.Entities
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime TransactionDate { get; set; }
+        [StringLength(30)]
+        public string StockCode { get; set; }
         public int QtyReturned { get; set; }
         [StringLength(16)]
         public string CreatedBy { get; set; }
