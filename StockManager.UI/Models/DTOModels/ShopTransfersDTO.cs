@@ -27,3 +27,5 @@ namespace StockManager.UI.Models.DTOModels
         public DateTime CreatedDate { get; set; }
     }
 }
+
+

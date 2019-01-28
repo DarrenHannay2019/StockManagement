@@ -1,0 +1,72 @@
+﻿@model StockManager.Data.Data.Entities.shopDeliveries
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>shopDeliveries</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShopRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShopRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StockCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StockCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QtyHangers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QtyHangers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ShopDeliveryID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

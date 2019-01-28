@@ -1,0 +1,69 @@
+﻿@model StockManager.Data.Data.Entities.shopReturns
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>shopReturns</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShopRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShopRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StockCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StockCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QtyReturned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QtyReturned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ReturnID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

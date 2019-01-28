@@ -1,0 +1,83 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.shopDeliveries>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShopRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WarehouseRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QtyHangers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WarehouseRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtyHangers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShopDeliveryID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShopDeliveryID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShopDeliveryID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
