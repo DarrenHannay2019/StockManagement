@@ -46,6 +46,11 @@ namespace StockManager.UI.Controllers
         // GET: WarehouseAdjustments/Create
         public IActionResult Create()
         {
+            var items = _context.Warehouse.ToList();
+            if(items!=null)
+            {
+                ViewBag.data = items;
+            }
             return View();
         }
 

@@ -28,5 +28,8 @@ namespace StockManager.Data.Data.Entities
         [DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Shops> Shops { get; set; }
+        public List<Stock> Stock { get; set; }
     }
 }

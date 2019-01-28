@@ -149,5 +149,7 @@ namespace StockManager.UI.Controllers
         {
             return _context.WarehouseReturn.Any(e => e.WarehouseReturnID == id);
         }
+       
     }
+
 }

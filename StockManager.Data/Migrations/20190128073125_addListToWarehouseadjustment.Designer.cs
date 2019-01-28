@@ -12,9 +12,10 @@ using System;
 namespace StockManager.Data.Migrations
 {
     [DbContext(typeof(SMContext))]
-    partial class SMContextModelSnapshot : ModelSnapshot
+    [Migration("20190128073125_addListToWarehouseadjustment")]
+    partial class addListToWarehouseadjustment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -476,23 +477,7 @@ namespace StockManager.Data.Migrations
                     b.Property<string>("Telephone2")
                         .HasMaxLength(60);
 
-                    b.Property<int?>("shopAdjustmentsShopAdjustID");
-
-                    b.Property<int?>("shopDeliveriesShopDeliveryID");
-
-                    b.Property<int?>("shopReturnsReturnID");
-
-                    b.Property<int?>("shopTransfersShopTransferID");
-
                     b.HasKey("ShopRef");
-
-                    b.HasIndex("shopAdjustmentsShopAdjustID");
-
-                    b.HasIndex("shopDeliveriesShopDeliveryID");
-
-                    b.HasIndex("shopReturnsReturnID");
-
-                    b.HasIndex("shopTransfersShopTransferID");
 
                     b.ToTable("Shop");
                 });
@@ -564,47 +549,15 @@ namespace StockManager.Data.Migrations
 
                     b.Property<int>("DeliveredQtyHangers");
 
-                    b.Property<int?>("DeliveriesDeliveryID");
-
                     b.Property<string>("Season")
                         .HasMaxLength(60);
 
                     b.Property<string>("SupplierRef")
                         .HasMaxLength(8);
 
-                    b.Property<int?>("WarehouseAdjustmentsWarehouseAdjustID");
-
-                    b.Property<int?>("WarehouseReturnID");
-
-                    b.Property<int?>("WarehouseTransfersWarehouseTransferID");
-
                     b.Property<bool>("ZeroQty");
 
-                    b.Property<int?>("shopAdjustmentsShopAdjustID");
-
-                    b.Property<int?>("shopDeliveriesShopDeliveryID");
-
-                    b.Property<int?>("shopReturnsReturnID");
-
-                    b.Property<int?>("shopTransfersShopTransferID");
-
                     b.HasKey("StockCode");
-
-                    b.HasIndex("DeliveriesDeliveryID");
-
-                    b.HasIndex("WarehouseAdjustmentsWarehouseAdjustID");
-
-                    b.HasIndex("WarehouseReturnID");
-
-                    b.HasIndex("WarehouseTransfersWarehouseTransferID");
-
-                    b.HasIndex("shopAdjustmentsShopAdjustID");
-
-                    b.HasIndex("shopDeliveriesShopDeliveryID");
-
-                    b.HasIndex("shopReturnsReturnID");
-
-                    b.HasIndex("shopTransfersShopTransferID");
 
                     b.ToTable("Stock");
                 });
@@ -635,8 +588,6 @@ namespace StockManager.Data.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int?>("DeliveriesDeliveryID");
-
                     b.Property<string>("Email")
                         .HasMaxLength(60);
 
@@ -658,8 +609,6 @@ namespace StockManager.Data.Migrations
                         .HasMaxLength(60);
 
                     b.HasKey("SupplierRef");
-
-                    b.HasIndex("DeliveriesDeliveryID");
 
                     b.ToTable("Supplier");
                 });
@@ -743,8 +692,6 @@ namespace StockManager.Data.Migrations
 
                     b.Property<bool>("Default");
 
-                    b.Property<int?>("DeliveriesDeliveryID");
-
                     b.Property<string>("Email")
                         .HasMaxLength(60);
 
@@ -767,29 +714,11 @@ namespace StockManager.Data.Migrations
                     b.Property<string>("WarehouseName")
                         .HasMaxLength(60);
 
-                    b.Property<int?>("WarehouseReturnID");
-
-                    b.Property<int?>("WarehouseTransfersWarehouseTransferID");
-
                     b.Property<int?>("WarehouseType");
-
-                    b.Property<int?>("shopDeliveriesShopDeliveryID");
-
-                    b.Property<int?>("shopReturnsReturnID");
 
                     b.HasKey("WarehouseRef");
 
-                    b.HasIndex("DeliveriesDeliveryID");
-
                     b.HasIndex("WarehouseAdjustmentsWarehouseAdjustID");
-
-                    b.HasIndex("WarehouseReturnID");
-
-                    b.HasIndex("WarehouseTransfersWarehouseTransferID");
-
-                    b.HasIndex("shopDeliveriesShopDeliveryID");
-
-                    b.HasIndex("shopReturnsReturnID");
 
                     b.ToTable("Warehouse");
                 });
@@ -1006,92 +935,11 @@ namespace StockManager.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StockManager.Data.Data.Entities.Shops", b =>
-                {
-                    b.HasOne("StockManager.Data.Data.Entities.shopAdjustments")
-                        .WithMany("Shops")
-                        .HasForeignKey("shopAdjustmentsShopAdjustID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopDeliveries")
-                        .WithMany("Shops")
-                        .HasForeignKey("shopDeliveriesShopDeliveryID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopReturns")
-                        .WithMany("Shops")
-                        .HasForeignKey("shopReturnsReturnID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopTransfers")
-                        .WithMany("Shops")
-                        .HasForeignKey("shopTransfersShopTransferID");
-                });
-
-            modelBuilder.Entity("StockManager.Data.Data.Entities.Stock", b =>
-                {
-                    b.HasOne("StockManager.Data.Data.Entities.Deliveries")
-                        .WithMany("Stock")
-                        .HasForeignKey("DeliveriesDeliveryID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.WarehouseAdjustments")
-                        .WithMany("Stock")
-                        .HasForeignKey("WarehouseAdjustmentsWarehouseAdjustID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.WarehouseReturn")
-                        .WithMany("Stock")
-                        .HasForeignKey("WarehouseReturnID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.WarehouseTransfers")
-                        .WithMany("Stock")
-                        .HasForeignKey("WarehouseTransfersWarehouseTransferID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopAdjustments")
-                        .WithMany("Stock")
-                        .HasForeignKey("shopAdjustmentsShopAdjustID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopDeliveries")
-                        .WithMany("Stock")
-                        .HasForeignKey("shopDeliveriesShopDeliveryID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopReturns")
-                        .WithMany("Stock")
-                        .HasForeignKey("shopReturnsReturnID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopTransfers")
-                        .WithMany("Stock")
-                        .HasForeignKey("shopTransfersShopTransferID");
-                });
-
-            modelBuilder.Entity("StockManager.Data.Data.Entities.Suppliers", b =>
-                {
-                    b.HasOne("StockManager.Data.Data.Entities.Deliveries")
-                        .WithMany("Suppliers")
-                        .HasForeignKey("DeliveriesDeliveryID");
-                });
-
             modelBuilder.Entity("StockManager.Data.Data.Entities.Warehouse", b =>
                 {
-                    b.HasOne("StockManager.Data.Data.Entities.Deliveries")
-                        .WithMany("Warehouses")
-                        .HasForeignKey("DeliveriesDeliveryID");
-
                     b.HasOne("StockManager.Data.Data.Entities.WarehouseAdjustments")
                         .WithMany("Warehouses")
                         .HasForeignKey("WarehouseAdjustmentsWarehouseAdjustID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.WarehouseReturn")
-                        .WithMany("Warehouses")
-                        .HasForeignKey("WarehouseReturnID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.WarehouseTransfers")
-                        .WithMany("Warehouses")
-                        .HasForeignKey("WarehouseTransfersWarehouseTransferID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopDeliveries")
-                        .WithMany("Warehouses")
-                        .HasForeignKey("shopDeliveriesShopDeliveryID");
-
-                    b.HasOne("StockManager.Data.Data.Entities.shopReturns")
-                        .WithMany("Warehouses")
-                        .HasForeignKey("shopReturnsReturnID");
                 });
 #pragma warning restore 612, 618
         }

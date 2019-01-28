@@ -44,5 +44,8 @@ namespace StockManager.Data.Data.Entities
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Shops> Shops { get; set; }
+        public List<Stock> Stock { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,5 +24,8 @@ namespace StockManager.Data.Data.Entities
         public int CreatedBy { get; set; }
         [DataType(DataType.DateTime)]       
         public DateTime CreatedDate { get; set; }
+
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Stock> Stock { get; set; }
     }
 }
