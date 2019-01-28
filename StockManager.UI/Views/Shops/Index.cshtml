@@ -12,57 +12,63 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Shopname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address3)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address4)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ContactName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telephone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telephone2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fax)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Memo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SHopType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopRef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shopname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Memo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SHopType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopRef)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Shopname)
             </td>
