@@ -10,22 +10,22 @@ using StockManager.Data.Data.Entities;
 
 namespace StockManager.UI.Controllers
 {
-    public class WarehouseAdjustmentsController : Controller
+    public class SettingsController : Controller
     {
         private readonly SMContext _context;
 
-        public WarehouseAdjustmentsController(SMContext context)
+        public SettingsController(SMContext context)
         {
             _context = context;
         }
 
-        // GET: WarehouseAdjustments
+        // GET: Settings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.WarehouseAdjustment.ToListAsync());
+            return View(await _context.Settings.ToListAsync());
         }
 
-        // GET: WarehouseAdjustments/Details/5
+        // GET: Settings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,49 +33,39 @@ namespace StockManager.UI.Controllers
                 return NotFound();
             }
 
-            var warehouseAdjustments = await _context.WarehouseAdjustment
-                .SingleOrDefaultAsync(m => m.WarehouseAdjustID == id);
-            if (warehouseAdjustments == null)
+            var settings = await _context.Settings
+                .SingleOrDefaultAsync(m => m.CompanyID == id);
+            if (settings == null)
             {
                 return NotFound();
             }
 
-            return View(warehouseAdjustments);
+            return View(settings);
         }
 
-        // GET: WarehouseAdjustments/Create
+        // GET: Settings/Create
         public IActionResult Create()
         {
-            var items = _context.Warehouse.ToList();
-            var StockItems = _context.Stock.ToList();
-            if(items!=null)
-            {
-                ViewBag.data = items;               
-            }
-            if (StockItems != null)
-            {
-                 ViewBag.Stock = StockItems;
-            }
             return View();
         }
 
-        // POST: WarehouseAdjustments/Create
+        // POST: Settings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate,CreatedBy,CreatedDate")] WarehouseAdjustments warehouseAdjustments)
+        public async Task<IActionResult> Create([Bind("CompanyID,CompanyName,Address1,Address2,Address3,Address4,PostCode,Telephone,VATReg,Email,Season,WWW,VatRate")] Settings settings)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(warehouseAdjustments);
+                _context.Add(settings);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(warehouseAdjustments);
+            return View(settings);
         }
 
-        // GET: WarehouseAdjustments/Edit/5
+        // GET: Settings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,22 +73,22 @@ namespace StockManager.UI.Controllers
                 return NotFound();
             }
 
-            var warehouseAdjustments = await _context.WarehouseAdjustment.SingleOrDefaultAsync(m => m.WarehouseAdjustID == id);
-            if (warehouseAdjustments == null)
+            var settings = await _context.Settings.SingleOrDefaultAsync(m => m.CompanyID == id);
+            if (settings == null)
             {
                 return NotFound();
             }
-            return View(warehouseAdjustments);
+            return View(settings);
         }
 
-        // POST: WarehouseAdjustments/Edit/5
+        // POST: Settings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate,CreatedBy,CreatedDate")] WarehouseAdjustments warehouseAdjustments)
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyID,CompanyName,Address1,Address2,Address3,Address4,PostCode,Telephone,VATReg,Email,Season,WWW,VatRate")] Settings settings)
         {
-            if (id != warehouseAdjustments.WarehouseAdjustID)
+            if (id != settings.CompanyID)
             {
                 return NotFound();
             }
@@ -107,12 +97,12 @@ namespace StockManager.UI.Controllers
             {
                 try
                 {
-                    _context.Update(warehouseAdjustments);
+                    _context.Update(settings);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WarehouseAdjustmentsExists(warehouseAdjustments.WarehouseAdjustID))
+                    if (!SettingsExists(settings.CompanyID))
                     {
                         return NotFound();
                     }
@@ -123,10 +113,10 @@ namespace StockManager.UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(warehouseAdjustments);
+            return View(settings);
         }
 
-        // GET: WarehouseAdjustments/Delete/5
+        // GET: Settings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,30 +124,30 @@ namespace StockManager.UI.Controllers
                 return NotFound();
             }
 
-            var warehouseAdjustments = await _context.WarehouseAdjustment
-                .SingleOrDefaultAsync(m => m.WarehouseAdjustID == id);
-            if (warehouseAdjustments == null)
+            var settings = await _context.Settings
+                .SingleOrDefaultAsync(m => m.CompanyID == id);
+            if (settings == null)
             {
                 return NotFound();
             }
 
-            return View(warehouseAdjustments);
+            return View(settings);
         }
 
-        // POST: WarehouseAdjustments/Delete/5
+        // POST: Settings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var warehouseAdjustments = await _context.WarehouseAdjustment.SingleOrDefaultAsync(m => m.WarehouseAdjustID == id);
-            _context.WarehouseAdjustment.Remove(warehouseAdjustments);
+            var settings = await _context.Settings.SingleOrDefaultAsync(m => m.CompanyID == id);
+            _context.Settings.Remove(settings);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WarehouseAdjustmentsExists(int id)
+        private bool SettingsExists(int id)
         {
-            return _context.WarehouseAdjustment.Any(e => e.WarehouseAdjustID == id);
+            return _context.Settings.Any(e => e.CompanyID == id);
         }
     }
 }
