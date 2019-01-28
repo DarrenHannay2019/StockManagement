@@ -1,0 +1,87 @@
+﻿@model StockManager.Data.Data.Entities.shopAdjustments
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>shopAdjustments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShopRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShopRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalLossItems)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalLossItems)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalGainItems)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalGainItems)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovementDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovementDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StockCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StockCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovementType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovementType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Qty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Values)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Values)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ShopAdjustID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

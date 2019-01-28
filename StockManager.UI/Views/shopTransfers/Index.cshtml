@@ -1,0 +1,77 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.shopTransfers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reference)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TransferDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FromShopRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToShopRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalQtyOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransferDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromShopRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToShopRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalQtyOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShopTransferID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShopTransferID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShopTransferID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

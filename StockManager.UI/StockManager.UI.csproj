@@ -24,4 +24,8 @@
     <ProjectReference Include="..\StockManager.Data\StockManager.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\ShopAdjust\" />
+  </ItemGroup>
+
 </Project>
