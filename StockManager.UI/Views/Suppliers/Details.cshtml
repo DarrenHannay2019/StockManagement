@@ -1,0 +1,102 @@
+﻿@model StockManager.Data.Data.Entities.Suppliers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Suppliers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address4)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telephone2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Memo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Memo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SupplierRef">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,78 @@
+﻿@model StockManager.Data.Data.Entities.Stock
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Stock</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StockCode" />
+            <div class="form-group">
+                <label asp-for="SupplierRef" class="control-label"></label>
+                <input asp-for="SupplierRef" class="form-control" />
+                <span asp-validation-for="SupplierRef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Season" class="control-label"></label>
+                <input asp-for="Season" class="form-control" />
+                <span asp-validation-for="Season" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="DeadCode" /> @Html.DisplayNameFor(model => model.DeadCode)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmtTakes" class="control-label"></label>
+                <input asp-for="AmtTakes" class="form-control" />
+                <span asp-validation-for="AmtTakes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveredQtyHangers" class="control-label"></label>
+                <input asp-for="DeliveredQtyHangers" class="form-control" />
+                <span asp-validation-for="DeliveredQtyHangers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostVal" class="control-label"></label>
+                <input asp-for="CostVal" class="form-control" />
+                <span asp-validation-for="CostVal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ZeroQty" /> @Html.DisplayNameFor(model => model.ZeroQty)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

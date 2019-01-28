@@ -1,0 +1,83 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.Stock>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierRef)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Season)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeadCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmtTakes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveredQtyHangers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CostVal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZeroQty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Season)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmtTakes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveredQtyHangers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostVal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZeroQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StockCode">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StockCode">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StockCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<StockManager.Data.Data.Entities.Shops>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shopname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address4)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telephone2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Memo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SHopType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shopname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SHopType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShopRef">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShopRef">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShopRef">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -10,85 +10,85 @@ using StockManager.Data.Data.Entities;
 
 namespace StockManager.UI.Controllers
 {
-    public class WarehouseReturnsController : Controller
+    public class StockCodeController : Controller
     {
         private readonly SMContext _context;
 
-        public WarehouseReturnsController(SMContext context)
+        public StockCodeController(SMContext context)
         {
             _context = context;
         }
 
-        // GET: WarehouseReturns
+        // GET: StockCode
         public async Task<IActionResult> Index()
         {
-            return View(await _context.WarehouseReturn.ToListAsync());
+            return View(await _context.Stock.ToListAsync());
         }
 
-        // GET: WarehouseReturns/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: StockCode/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var warehouseReturn = await _context.WarehouseReturn
-                .SingleOrDefaultAsync(m => m.WarehouseReturnID == id);
-            if (warehouseReturn == null)
+            var stock = await _context.Stock
+                .SingleOrDefaultAsync(m => m.StockCode == id);
+            if (stock == null)
             {
                 return NotFound();
             }
 
-            return View(warehouseReturn);
+            return View(stock);
         }
 
-        // GET: WarehouseReturns/Create
+        // GET: StockCode/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: WarehouseReturns/Create
+        // POST: StockCode/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WarehouseReturnID,Reference,ReturnDate,FromWarehouseRef,ToWarehouseRef,StockCode,TotalGarmentsQty,TotalBoxesQty,TotalUnitsQty,CreatedBy,CreatedDate")] WarehouseReturn warehouseReturn)
+        public async Task<IActionResult> Create([Bind("StockCode,SupplierRef,Season,DeadCode,AmtTakes,DeliveredQtyHangers,CostVal,ZeroQty,CreatedBy,CreatedDate")] Stock stock)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(warehouseReturn);
+                _context.Add(stock);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(warehouseReturn);
+            return View(stock);
         }
 
-        // GET: WarehouseReturns/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: StockCode/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var warehouseReturn = await _context.WarehouseReturn.SingleOrDefaultAsync(m => m.WarehouseReturnID == id);
-            if (warehouseReturn == null)
+            var stock = await _context.Stock.SingleOrDefaultAsync(m => m.StockCode == id);
+            if (stock == null)
             {
                 return NotFound();
             }
-            return View(warehouseReturn);
+            return View(stock);
         }
 
-        // POST: WarehouseReturns/Edit/5
+        // POST: StockCode/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseReturnID,Reference,ReturnDate,FromWarehouseRef,ToWarehouseRef,StockCode,TotalGarmentsQty,TotalBoxesQty,TotalUnitsQty,CreatedBy,CreatedDate")] WarehouseReturn warehouseReturn)
+        public async Task<IActionResult> Edit(string id, [Bind("StockCode,SupplierRef,Season,DeadCode,AmtTakes,DeliveredQtyHangers,CostVal,ZeroQty,CreatedBy,CreatedDate")] Stock stock)
         {
-            if (id != warehouseReturn.WarehouseReturnID)
+            if (id != stock.StockCode)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace StockManager.UI.Controllers
             {
                 try
                 {
-                    _context.Update(warehouseReturn);
+                    _context.Update(stock);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WarehouseReturnExists(warehouseReturn.WarehouseReturnID))
+                    if (!StockExists(stock.StockCode))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace StockManager.UI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(warehouseReturn);
+            return View(stock);
         }
 
-        // GET: WarehouseReturns/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: StockCode/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var warehouseReturn = await _context.WarehouseReturn
-                .SingleOrDefaultAsync(m => m.WarehouseReturnID == id);
-            if (warehouseReturn == null)
+            var stock = await _context.Stock
+                .SingleOrDefaultAsync(m => m.StockCode == id);
+            if (stock == null)
             {
                 return NotFound();
             }
 
-            return View(warehouseReturn);
+            return View(stock);
         }
 
-        // POST: WarehouseReturns/Delete/5
+        // POST: StockCode/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var warehouseReturn = await _context.WarehouseReturn.SingleOrDefaultAsync(m => m.WarehouseReturnID == id);
-            _context.WarehouseReturn.Remove(warehouseReturn);
+            var stock = await _context.Stock.SingleOrDefaultAsync(m => m.StockCode == id);
+            _context.Stock.Remove(stock);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WarehouseReturnExists(int id)
+        private bool StockExists(string id)
         {
-            return _context.WarehouseReturn.Any(e => e.WarehouseReturnID == id);
+            return _context.Stock.Any(e => e.StockCode == id);
         }
     }
 }
