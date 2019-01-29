@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-StockManager.UI-5A518C91-D7C9-403B-B3CA-011F60734FAA</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\ShopAdjust\**" />
+    <Content Remove="Views\ShopAdjust\**" />
+    <EmbeddedResource Remove="Views\ShopAdjust\**" />
+    <None Remove="Views\ShopAdjust\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
@@ -22,10 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StockManager.Data\StockManager.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ShopAdjust\" />
   </ItemGroup>
 
 </Project>

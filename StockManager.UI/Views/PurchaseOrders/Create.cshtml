@@ -11,22 +11,22 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SupplierRef" class="control-label"></label>
-                <input asp-for="SupplierRef" class="form-control" />
+                @Html.DropDownList("SupplierRef", new SelectList(ViewBag.Supplier, "SupplierRef", "SupplierRef"))
                 <span asp-validation-for="SupplierRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WarehouseRef" class="control-label"></label>
-                <input asp-for="WarehouseRef" class="form-control" />
+                @Html.DropDownList("WarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="WarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Season" class="control-label"></label>
-                <input asp-for="Season" class="form-control" />
+                @Html.DropDownList("Season", new SelectList(ViewBag.Season, "SeasonName", "SeasonName"))
                 <span asp-validation-for="Season" class="text-danger"></span>
             </div>
             <div class="form-group">

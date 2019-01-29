@@ -125,7 +125,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate,CreatedBy,CreatedDate")] WarehouseAdjustments warehouseAdjustments)
+        public async Task<IActionResult> Edit(int id, [Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate")] WarehouseAdjustments warehouseAdjustments)
         {
             if (id != warehouseAdjustments.WarehouseAdjustID)
             {

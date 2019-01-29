@@ -21,7 +21,7 @@ namespace StockManager.Data.Data.Entities
         public int TotalGarmentsQty { get; set; }
         public int TotalBoxesQty { get; set; }
         public int TotalUnitsQty { get; set; }
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]       
         public DateTime CreatedDate { get; set; }
 

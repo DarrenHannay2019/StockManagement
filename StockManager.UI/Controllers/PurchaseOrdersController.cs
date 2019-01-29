@@ -81,6 +81,12 @@ namespace StockManager.UI.Controllers
         {
             var items = _context.Warehouse.ToList();
             var StockItems = _context.Stock.ToList();
+            var Suppliers = _context.Supplier.ToList();
+            var SeasonsList = _context.Season.ToList();
+            if(SeasonsList != null)
+            {
+                ViewBag.Season = SeasonsList;
+            }
             if (items != null)
             {
                 ViewBag.data = items;
@@ -88,6 +94,10 @@ namespace StockManager.UI.Controllers
             if (StockItems != null)
             {
                 ViewBag.Stock = StockItems;
+            }
+            if (Suppliers != null)
+            {
+                ViewBag.Suplier = Suppliers;
             }
             return View();
         }
@@ -131,7 +141,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DeliveryID,StockCode,SupplierRef,WarehouseRef,Season,TotalGarments,TotalHangers,TotalBoxes,NetAmount,DeliveryCharge,Commission,VATAmount,GrossAmount,DeliveryDate,Notes,Invoice,Shipper,ShipperInvoice,CreatedBy,CreatedDate")] Deliveries deliveries)
+        public async Task<IActionResult> Edit(int id, [Bind("DeliveryID,StockCode,SupplierRef,WarehouseRef,Season,TotalGarments,TotalHangers,TotalBoxes,NetAmount,DeliveryCharge,Commission,VATAmount,GrossAmount,DeliveryDate,Notes,Invoice,Shipper,ShipperInvoice")] Deliveries deliveries)
         {
             if (id != deliveries.DeliveryID)
             {
