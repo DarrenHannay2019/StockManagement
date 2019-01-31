@@ -4,18 +4,20 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
+<h2>Edit Shop Adjustment</h2>
 <h4>shopAdjustments</h4>
 <hr />
 <form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
-        <div class="col-md-4">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ShopAdjustID" />
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ShopAdjustID" class="control-label"></label>
+                <input asp-for="ShopAdjustID" readonly="readonly" class="form-control" />
+            </div>
             <div class="form-group">
                 <label asp-for="ShopRef" class="control-label"></label>
-                <input asp-for="ShopRef" class="form-control" />
+                @Html.DropDownList("shopRef", new SelectList(ViewBag.data, "shopRef", "shopName"))
                 <span asp-validation-for="ShopRef" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,50 +27,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="TotalLossItems" class="control-label"></label>
-                <input asp-for="TotalLossItems" class="form-control" />
-                <span asp-validation-for="TotalLossItems" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalGainItems" class="control-label"></label>
-                <input asp-for="TotalGainItems" class="form-control" />
-                <span asp-validation-for="TotalGainItems" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Qty" class="control-label"></label>
-                <input asp-for="Qty" class="form-control" />
-                <span asp-validation-for="Qty" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="MovementDate" class="control-label"></label>
-                <input asp-for="MovementDate" class="form-control" />
-                <span asp-validation-for="MovementDate" class="text-danger"></span>
-            </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="MovementType" class="control-label"></label>
                 <input asp-for="MovementType" class="form-control" />
                 <span asp-validation-for="MovementType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Values" class="control-label"></label>
-                <input asp-for="Values" class="form-control" />
-                <span asp-validation-for="Values" class="text-danger"></span>
+                <label asp-for="MovementDate" class="control-label"></label>
+                <input asp-for="MovementDate" class="form-control" />
+                <span asp-validation-for="MovementDate" class="text-danger"></span>
             </div>
         </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
+        </div>
+    </div>
 </form>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

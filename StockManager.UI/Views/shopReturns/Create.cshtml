@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create New Shop Return</h2>
 
 <h4>shopReturns</h4>
 <hr />
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="WarehouseRef" class="control-label"></label>
-                <input asp-for="WarehouseRef" class="form-control" />
+                @Html.DropDownList("FromWarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="WarehouseRef" class="text-danger"></span>
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
             <div class="form-group">

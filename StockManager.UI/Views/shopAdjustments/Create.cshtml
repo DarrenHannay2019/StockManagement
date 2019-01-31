@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create New Shop Adjustment</h2>
 
 <h4>shopAdjustments</h4>
 <hr />
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ShopRef" class="control-label"></label>
-                <input asp-for="ShopRef" class="form-control" />
+                @Html.DropDownList("WarehouseRef", new SelectList(ViewBag.data, "Shopref", "ShopName"))
                 <span asp-validation-for="ShopRef" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
         </div>

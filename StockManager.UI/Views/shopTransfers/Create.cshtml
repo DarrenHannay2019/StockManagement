@@ -24,12 +24,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="FromShopRef" class="control-label"></label>
-                <input asp-for="FromShopRef" class="form-control" />
+                @Html.DropDownList("FromShopRef", new SelectList(ViewBag.Data, "ShopRef", "ShopName"))
                 <span asp-validation-for="FromShopRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToShopRef" class="control-label"></label>
-                <input asp-for="ToShopRef" class="form-control" />
+                @Html.DropDownList("ToShopRef", new SelectList(ViewBag.Data, "ShopRef", "ShopName"))
                 <span asp-validation-for="ToShopRef" class="text-danger"></span>
             </div>
             <div class="form-group">
