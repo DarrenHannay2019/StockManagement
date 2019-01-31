@@ -4,25 +4,30 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Stock Code</h2>
 
-<h4>Stock</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="StockCode" />
+            <div class="form-group">
+                <label asp-for="StockCode" class="control-label"></label>
+                <input asp-for="StockCode" class="form-control" />
+                <span asp-validation-for="StockCode" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="SupplierRef" class="control-label"></label>
-                <input asp-for="SupplierRef" class="form-control" />
+                @Html.DropDownList("SupplierRef", new SelectList(ViewBag.items, "SupplierRef", "SupplierRef"))
                 <span asp-validation-for="SupplierRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Season" class="control-label"></label>
-                <input asp-for="Season" class="form-control" />
+                @Html.DropDownList("Season", new SelectList(ViewBag.Sitems, "SeasonName", "SeasonName"))
                 <span asp-validation-for="Season" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <div class="checkbox">
                     <label>
@@ -30,6 +35,15 @@
                     </label>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ZeroQty" /> @Html.DisplayNameFor(model => model.ZeroQty)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="AmtTakes" class="control-label"></label>
                 <input asp-for="AmtTakes" class="form-control" />
@@ -45,29 +59,17 @@
                 <input asp-for="CostVal" class="form-control" />
                 <span asp-validation-for="CostVal" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="ZeroQty" /> @Html.DisplayNameFor(model => model.ZeroQty)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+            
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
 
 <div>
     <a asp-action="Index">Back to List</a>
