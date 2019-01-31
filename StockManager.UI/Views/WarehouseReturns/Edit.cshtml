@@ -4,15 +4,16 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>WarehouseReturn</h4>
+<h2>Edit Warehouse Return</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="WarehouseReturnID" />
+            <div class="form-group">
+                <label asp-for="WarehouseReturnID" class="control-label"></label>
+                <input asp-for="WarehouseReturnID" readonly="readonly" class="form-control" />
+            </div>           
             <div class="form-group">
                 <label asp-for="Reference" class="control-label"></label>
                 <input asp-for="Reference" class="form-control" />
@@ -23,21 +24,25 @@
                 <input asp-for="ReturnDate" class="form-control" />
                 <span asp-validation-for="ReturnDate" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="FromWarehouseRef" class="control-label"></label>
-                <input asp-for="FromWarehouseRef" class="form-control" />
+                @Html.DropDownList("FromWarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="FromWarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToWarehouseRef" class="control-label"></label>
-                <input asp-for="ToWarehouseRef" class="form-control" />
+                @Html.DropDownList("ToWarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="ToWarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="TotalGarmentsQty" class="control-label"></label>
                 <input asp-for="TotalGarmentsQty" class="form-control" />
@@ -52,15 +57,17 @@
                 <label asp-for="TotalUnitsQty" class="control-label"></label>
                 <input asp-for="TotalUnitsQty" class="form-control" />
                 <span asp-validation-for="TotalUnitsQty" class="text-danger"></span>
-            </div>
-            
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
+</form>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
