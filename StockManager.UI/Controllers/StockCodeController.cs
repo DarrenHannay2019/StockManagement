@@ -46,6 +46,16 @@ namespace StockManager.UI.Controllers
         // GET: StockCode/Create
         public IActionResult Create()
         {
+            var items = _context.Supplier.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            var Sitems = _context.Season.ToList();
+            if (Sitems != null)
+            {
+                ViewBag.data = items;
+            }
             return View();
         }
 
