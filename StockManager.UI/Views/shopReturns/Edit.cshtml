@@ -16,12 +16,12 @@
             <input type="hidden" asp-for="ReturnID" />
             <div class="form-group">
                 <label asp-for="ShopRef" class="control-label"></label>
-                <input asp-for="ShopRef" class="form-control" />
+                @Html.DropDownList("ShopRef", new SelectList(ViewBag.data, "Shopref", "ShopName"))
                 <span asp-validation-for="ShopRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WarehouseRef" class="control-label"></label>
-                <input asp-for="WarehouseRef" class="form-control" />
+                @Html.DropDownList("WarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="WarehouseRef" class="text-danger"></span>
             </div>
         </div>
