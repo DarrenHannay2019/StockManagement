@@ -58,6 +58,8 @@ namespace StockManager.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                suppliers.CreatedBy = "Admin";
+                suppliers.CreatedDate = DateTime.Now;
                 _context.Add(suppliers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +88,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("SupplierRef,SupplierName,Address1,Address2,Address3,Address4,PostCode,ContactName,Telephone,Telephone2,Fax,Email,Memo,CreatedBy,CreatedDate")] Suppliers suppliers)
+        public async Task<IActionResult> Edit(string id, [Bind("SupplierRef,SupplierName,Address1,Address2,Address3,Address4,PostCode,ContactName,Telephone,Telephone2,Fax,Email,Memo")] Suppliers suppliers)
         {
             if (id != suppliers.SupplierRef)
             {

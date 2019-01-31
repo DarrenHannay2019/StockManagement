@@ -4,13 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Warehouse</h4>
+<h2>Create New Warehouse</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="WarehouseRef" class="control-label"></label>
@@ -47,6 +45,8 @@
                 <input asp-for="PostCode" class="form-control" />
                 <span asp-validation-for="PostCode" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="ContactName" class="control-label"></label>
                 <input asp-for="ContactName" class="form-control" />
@@ -79,7 +79,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="WarehouseType" class="control-label"></label>
-                <input asp-for="WarehouseType" class="form-control" />
+                @Html.DropDownListFor(m => m.WarehouseType, new SelectList(Enum.GetValues(typeof(StockManager.Data.Data.Entities.Warehouse.WHType))), "Select Type")
                 <span asp-validation-for="WarehouseType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -89,22 +89,16 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
     <a asp-action="Index">Back to List</a>

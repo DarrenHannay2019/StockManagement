@@ -4,13 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>WarehouseReturn</h4>
+<h2>Create New Warehouse Return</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Reference" class="control-label"></label>
@@ -24,17 +22,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="FromWarehouseRef" class="control-label"></label>
-                <input asp-for="FromWarehouseRef" class="form-control" />
+                @Html.DropDownList("FromWarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
+                
                 <span asp-validation-for="FromWarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToWarehouseRef" class="control-label"></label>
-                <input asp-for="ToWarehouseRef" class="form-control" />
+                @Html.DropDownList("ToWarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="ToWarehouseRef" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,23 +53,16 @@
                 <input asp-for="TotalUnitsQty" class="form-control" />
                 <span asp-validation-for="TotalUnitsQty" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
+</form>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
