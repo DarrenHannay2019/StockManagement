@@ -79,7 +79,23 @@ namespace StockManager.UI.Controllers
         // GET: shopDeliveries/Create
         public IActionResult Create()
         {
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            var toitems = _context.Warehouse.ToList();
+            if (toitems != null)
+            {
+                ViewBag.Warehouse = toitems;
+            }
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             return View();
+
         }
 
         // POST: shopDeliveries/Create
@@ -105,7 +121,21 @@ namespace StockManager.UI.Controllers
             {
                 return NotFound();
             }
-
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            var toitems = _context.Warehouse.ToList();
+            if (toitems != null)
+            {
+                ViewBag.Warehouse = toitems;
+            }
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             var shopDeliveries = await _context.ShopDelivery.SingleOrDefaultAsync(m => m.ShopDeliveryID == id);
             if (shopDeliveries == null)
             {

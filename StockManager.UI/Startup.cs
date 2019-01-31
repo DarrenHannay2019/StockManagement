@@ -54,10 +54,8 @@ namespace StockManager.UI
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-
+            app.UseStaticFiles();          
             app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -74,6 +74,11 @@ namespace StockManager.UI.Controllers
         {
             var items = _context.Shop.ToList();
             var StockItems = _context.Stock.ToList();
+            var toitems = _context.Warehouse.ToList();
+            if(toitems != null)
+            {
+                ViewBag.Warehouse = toitems;
+            }
             if (items != null)
             {
                 ViewBag.data = items;
