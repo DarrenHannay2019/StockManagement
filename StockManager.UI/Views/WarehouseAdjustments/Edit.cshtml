@@ -4,18 +4,19 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>WarehouseAdjustments</h4>
+<h2>Edit Warehouse Adjustment</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="WarehouseAdjustID" />
+<form asp-action="Edit">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="WarehouseAdjustID" class="control-label"></label>
+                <input asp-for="WarehouseAdjustID" readonly="readonly" class="form-control" />
+            </div>
             <div class="form-group">
                 <label asp-for="WarehouseRef" class="control-label"></label>
-                <input asp-for="WarehouseRef" class="form-control" />
+                @Html.DropDownList("WarehouseRef", new SelectList(ViewBag.data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="WarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,9 +26,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                <input asp-for="StockCode" class="form-control" />
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-6">            
             <div class="form-group">
                 <label asp-for="MovementType" class="control-label"></label>
                 <input asp-for="MovementType" class="form-control" />
@@ -43,23 +46,16 @@
                 <input asp-for="MovementDate" class="form-control" />
                 <span asp-validation-for="MovementDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
+</form>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

@@ -20,8 +20,35 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: WarehouseAdjustments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+         
+            ViewBag.WarehouseRefSortParm = String.IsNullOrEmpty(SortOrder) ? "WHRefDes" : "WHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var warehouseAdjustments = from s in _context.WarehouseAdjustment
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    warehouseAdjustments = warehouseAdjustments.OrderByDescending(s => s.StockCode);
+                    break;                
+                case "WHRefDes":
+                    warehouseAdjustments = warehouseAdjustments.OrderByDescending(s => s.WarehouseRef);
+                    break;                
+                case "WHRef":
+                    warehouseAdjustments = warehouseAdjustments.OrderBy(s => s.WarehouseRef);
+                    break;
+                case "date_desc":
+                    warehouseAdjustments = warehouseAdjustments.OrderByDescending(s => s.MovementDate);
+                    break;
+                case "Date":
+                    warehouseAdjustments = warehouseAdjustments.OrderBy(s => s.MovementDate);
+                    break;
+                default:
+                    warehouseAdjustments = warehouseAdjustments.OrderByDescending(s => s.WarehouseAdjustID);
+                    break;
+            }
             return View(await _context.WarehouseAdjustment.ToListAsync());
         }
 
@@ -46,6 +73,16 @@ namespace StockManager.UI.Controllers
         // GET: WarehouseAdjustments/Create
         public IActionResult Create()
         {
+            var items = _context.Warehouse.ToList();
+            var StockItems = _context.Stock.ToList();
+            if(items!=null)
+            {
+                ViewBag.data = items;               
+            }
+            if (StockItems != null)
+            {
+                 ViewBag.Stock = StockItems;
+            }
             return View();
         }
 
@@ -58,6 +95,8 @@ namespace StockManager.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                warehouseAdjustments.CreatedBy = "Admin";
+                warehouseAdjustments.CreatedDate = DateTime.Now;
                 _context.Add(warehouseAdjustments);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +125,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate,CreatedBy,CreatedDate")] WarehouseAdjustments warehouseAdjustments)
+        public async Task<IActionResult> Edit(int id, [Bind("WarehouseAdjustID,WarehouseRef,Reference,StockCode,MovementType,TotalItems,MovementDate")] WarehouseAdjustments warehouseAdjustments)
         {
             if (id != warehouseAdjustments.WarehouseAdjustID)
             {

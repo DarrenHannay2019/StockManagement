@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,8 +21,11 @@ namespace StockManager.Data.Data.Entities
         public int TotalGarmentsQty { get; set; }
         public int TotalBoxesQty { get; set; }
         public int TotalUnitsQty { get; set; }
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         [DataType(DataType.DateTime)]       
         public DateTime CreatedDate { get; set; }
+
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Stock> Stock { get; set; }
     }
 }

@@ -20,8 +20,41 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: PurchaseOrders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder) 
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.SupplierRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SPRefDes" : "SPRef";
+            ViewBag.WarehouseRefSortParm = String.IsNullOrEmpty(SortOrder) ? "WHRefDes" : "WHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var PurchaseOrders = from s in _context.PurchaseOrder
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SPRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.SupplierRef);
+                    break;
+                case "WHRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.WarehouseRef);
+                    break;
+                case "SPRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.SupplierRef);
+                    break;
+                case "WHRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.WarehouseRef);
+                    break;
+                case "date_desc":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.DeliveryDate);
+                    break;
+                case "Date":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.DeliveryDate);
+                    break;
+                default:
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.DeliveryID);
+                    break;
+            }
             return View(await _context.PurchaseOrder.ToListAsync());
         }
 
@@ -46,6 +79,26 @@ namespace StockManager.UI.Controllers
         // GET: PurchaseOrders/Create
         public IActionResult Create()
         {
+            var items = _context.Warehouse.ToList();
+            var StockItems = _context.Stock.ToList();
+            var Suppliers = _context.Supplier.ToList();
+            var SeasonsList = _context.Season.ToList();
+            if(SeasonsList != null)
+            {
+                ViewBag.Season = SeasonsList;
+            }
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
+            if (Suppliers != null)
+            {
+                ViewBag.Suplier = Suppliers;
+            }
             return View();
         }
 
@@ -58,6 +111,8 @@ namespace StockManager.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                deliveries.CreatedBy = "Admin";
+                deliveries.CreatedDate = DateTime.Now;
                 _context.Add(deliveries);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +141,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DeliveryID,StockCode,SupplierRef,WarehouseRef,Season,TotalGarments,TotalHangers,TotalBoxes,NetAmount,DeliveryCharge,Commission,VATAmount,GrossAmount,DeliveryDate,Notes,Invoice,Shipper,ShipperInvoice,CreatedBy,CreatedDate")] Deliveries deliveries)
+        public async Task<IActionResult> Edit(int id, [Bind("DeliveryID,StockCode,SupplierRef,WarehouseRef,Season,TotalGarments,TotalHangers,TotalBoxes,NetAmount,DeliveryCharge,Commission,VATAmount,GrossAmount,DeliveryDate,Notes,Invoice,Shipper,ShipperInvoice")] Deliveries deliveries)
         {
             if (id != deliveries.DeliveryID)
             {

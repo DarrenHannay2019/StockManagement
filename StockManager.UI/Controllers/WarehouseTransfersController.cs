@@ -20,8 +20,41 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: WarehouseTransfers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.SupplierRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SPRefDes" : "SPRef";
+            ViewBag.WarehouseRefSortParm = String.IsNullOrEmpty(SortOrder) ? "WHRefDes" : "WHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var PurchaseOrders = from s in _context.WarehouseTransfer
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SPRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.ToWarehouseRef);
+                    break;                   
+                case "WHRefDes":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.FromWarehouseRef);
+                    break;
+                case "SPRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.ToWarehouseRef);
+                    break;
+                case "WHRef":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.FromWarehouseRef);
+                    break;
+                case "date_desc":
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.TransferDate);
+                    break;
+                case "Date":
+                    PurchaseOrders = PurchaseOrders.OrderBy(s => s.TransferDate);
+                    break;
+                default:
+                    PurchaseOrders = PurchaseOrders.OrderByDescending(s => s.WarehouseTransferID);
+                    break;
+            }
             return View(await _context.WarehouseTransfer.ToListAsync());
         }
 
@@ -46,6 +79,16 @@ namespace StockManager.UI.Controllers
         // GET: WarehouseTransfers/Create
         public IActionResult Create()
         {
+            var items = _context.Warehouse.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             return View();
         }
 
@@ -58,6 +101,8 @@ namespace StockManager.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                warehouseTransfers.CreatedBy = "Admin";
+                warehouseTransfers.CreatedDate = DateTime.Now;
                 _context.Add(warehouseTransfers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +131,7 @@ namespace StockManager.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseTransferID,Reference,TransferDate,FromWarehouseRef,ToWarehouseRef,StockCode,TotalGarmentsQtyOut,TotalBoxesQtyOut,TotalUnitsQtyOut,CreatedBy,CreatedDate")] WarehouseTransfers warehouseTransfers)
+        public async Task<IActionResult> Edit(int id, [Bind("WarehouseTransferID,Reference,TransferDate,FromWarehouseRef,ToWarehouseRef,StockCode,TotalGarmentsQtyOut,TotalBoxesQtyOut,TotalUnitsQtyOut")] WarehouseTransfers warehouseTransfers)
         {
             if (id != warehouseTransfers.WarehouseTransferID)
             {
