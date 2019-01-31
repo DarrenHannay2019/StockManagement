@@ -56,7 +56,6 @@ namespace StockManager.Data.Data.Entities
         
         public string Memo { get; set; }
 
-        [StringLength (60)]
         public SHType? SHopType { get; set; }
 
         [StringLength (16)]
