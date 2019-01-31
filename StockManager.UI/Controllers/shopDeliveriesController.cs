@@ -20,11 +20,44 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: shopDeliveries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
-            return View(await _context.ShopDelivery.ToListAsync());
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.SupplierRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SPRefDes" : "SPRef";
+            ViewBag.ShopRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SHRefDes" : "SHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var shopDeliveries= from s in _context.ShopDelivery
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    shopDeliveries = shopDeliveries.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SPRefDes":
+                    shopDeliveries = shopDeliveries.OrderByDescending(s => s.ShopRef);
+                    break;
+                case "SHRefDes":
+                    shopDeliveries = shopDeliveries.OrderByDescending(s => s.ShopRef);
+                    break;
+                case "SPRef":
+                    shopDeliveries = shopDeliveries.OrderBy(s => s.DeliveryRef);
+                    break;
+                case "WHRef":
+                    shopDeliveries = shopDeliveries.OrderBy(s => s.WarehouseRef);
+                    break;
+                case "date_desc":
+                    shopDeliveries = shopDeliveries.OrderByDescending(s => s.DeliveryDate);
+                    break;
+                case "Date":
+                    shopDeliveries = shopDeliveries.OrderBy(s => s.DeliveryDate);
+                    break;
+                default:
+                    shopDeliveries = shopDeliveries.OrderByDescending(s => s.ShopDeliveryID);
+                    break;
+            }
+            return View(shopDeliveries.ToList());
+            //return View(await _context.PurchaseOrder.ToListAsync());
         }
-
         // GET: shopDeliveries/Details/5
         public async Task<IActionResult> Details(int? id)
         {

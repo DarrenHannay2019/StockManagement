@@ -20,8 +20,34 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: shopReturns
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.ShopRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SHRefDes" : "SHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var returnOrders = from s in _context.ShopReturn
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    returnOrders = returnOrders.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SHRefDes":
+                    returnOrders = returnOrders.OrderByDescending(s => s.ShopRef);
+                    break;
+                case "SHRef":
+                    returnOrders = returnOrders.OrderBy(s => s.ShopRef);
+                    break;
+                case "date_desc":
+                    returnOrders = returnOrders.OrderByDescending(s => s.TransactionDate);
+                    break;
+                case "Date":
+                    returnOrders = returnOrders.OrderBy(s => s.TransactionDate);
+                    break;
+                default:
+                    returnOrders = returnOrders.OrderByDescending(s => s.ReturnID);
+                    break;
+            }
             return View(await _context.ShopReturn.ToListAsync());
         }
 
@@ -46,8 +72,19 @@ namespace StockManager.UI.Controllers
         // GET: shopReturns/Create
         public IActionResult Create()
         {
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             return View();
         }
+
 
         // POST: shopReturns/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -72,13 +109,22 @@ namespace StockManager.UI.Controllers
             {
                 return NotFound();
             }
-
-            var shopReturns = await _context.ShopReturn.SingleOrDefaultAsync(m => m.ReturnID == id);
-            if (shopReturns == null)
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
+            var shopReturn = await _context.ShopReturn.SingleOrDefaultAsync(m => m.ReturnID == id);
+            if (shopReturn == null)
             {
                 return NotFound();
             }
-            return View(shopReturns);
+            return View(shopReturn);
         }
 
         // POST: shopReturns/Edit/5

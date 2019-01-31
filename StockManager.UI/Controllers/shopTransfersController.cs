@@ -20,8 +20,41 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: shopTransfers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+            ViewBag.SupplierRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SPRefDes" : "SPRef";
+            ViewBag.WarehouseRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SHRefDes" : "SHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var transferOrders = from s in _context.ShopTransfer
+                                 select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    transferOrders = transferOrders.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SPRefDes":
+                    transferOrders = transferOrders.OrderBy(s => s.ToShopRef);
+                    break;
+                case "WHRefDes":
+                    transferOrders = transferOrders.OrderByDescending(s => s.FromShopRef);
+                    break;
+                case "SPRef":
+                    transferOrders = transferOrders.OrderBy(s => s.ToShopRef);
+                    break;
+                case "WHRef":
+                    transferOrders = transferOrders.OrderBy(s => s.FromShopRef);
+                    break;
+                case "date_desc":
+                    transferOrders = transferOrders.OrderByDescending(s => s.TransferDate);
+                    break;
+                case "Date":
+                    transferOrders = transferOrders.OrderBy(s => s.TransferDate);
+                    break;
+                default:
+                    transferOrders = transferOrders.OrderByDescending(s => s.ShopTransferID);
+                    break;
+            }
             return View(await _context.ShopTransfer.ToListAsync());
         }
 
@@ -46,6 +79,16 @@ namespace StockManager.UI.Controllers
         // GET: shopTransfers/Create
         public IActionResult Create()
         {
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             return View();
         }
 
@@ -72,6 +115,16 @@ namespace StockManager.UI.Controllers
             {
                 return NotFound();
             }
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
 
             var shopTransfers = await _context.ShopTransfer.SingleOrDefaultAsync(m => m.ShopTransferID == id);
             if (shopTransfers == null)
@@ -80,11 +133,13 @@ namespace StockManager.UI.Controllers
             }
             return View(shopTransfers);
         }
+         
+           
 
-        // POST: shopTransfers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+// POST: shopTransfers/Edit/5
+// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ShopTransferID,Reference,TransferDate,FromShopRef,ToShopRef,StockCode,TotalQtyOut,CreatedBy,CreatedDate")] shopTransfers shopTransfers)
         {

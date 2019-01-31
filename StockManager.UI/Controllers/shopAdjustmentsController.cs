@@ -20,8 +20,35 @@ namespace StockManager.UI.Controllers
         }
 
         // GET: shopAdjustments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder)
         {
+            ViewBag.OurRefSortParm = String.IsNullOrEmpty(SortOrder) ? "OurRefDes" : "";
+
+            ViewBag.ShopRefSortParm = String.IsNullOrEmpty(SortOrder) ? "SHRefDes" : "SHRef";
+            ViewBag.DeliveryDateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+            var shopAdjustments = from s in _context.ShopAdjustment
+                                       select s;
+            switch (SortOrder)
+            {
+                case "OurRefDes":
+                    shopAdjustments = shopAdjustments.OrderByDescending(s => s.StockCode);
+                    break;
+                case "SHRefDes":
+                    shopAdjustments = shopAdjustments.OrderByDescending(s => s.ShopRef);
+                    break;
+                case "SHRef":
+                    shopAdjustments = shopAdjustments.OrderBy(s => s.ShopRef);
+                    break;
+                case "date_desc":
+                    shopAdjustments = shopAdjustments.OrderByDescending(s => s.MovementDate);
+                    break;
+                case "Date":
+                    shopAdjustments = shopAdjustments.OrderBy(s => s.MovementDate);
+                    break;
+                default:
+                    shopAdjustments = shopAdjustments.OrderByDescending(s => s.ShopAdjustID);
+                    break;
+            }
             return View(await _context.ShopAdjustment.ToListAsync());
         }
 
@@ -46,6 +73,16 @@ namespace StockManager.UI.Controllers
         // GET: shopAdjustments/Create
         public IActionResult Create()
         {
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             return View();
         }
 
@@ -77,6 +114,16 @@ namespace StockManager.UI.Controllers
             if (shopAdjustments == null)
             {
                 return NotFound();
+            }
+            var items = _context.Shop.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
             }
             return View(shopAdjustments);
         }
