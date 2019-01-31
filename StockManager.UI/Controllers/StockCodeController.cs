@@ -47,14 +47,15 @@ namespace StockManager.UI.Controllers
         public IActionResult Create()
         {
             var items = _context.Supplier.ToList();
+            var season = _context.Season.ToList();
             if (items != null)
             {
                 ViewBag.data = items;
             }
             var Sitems = _context.Season.ToList();
-            if (Sitems != null)
+            if (season != null)
             {
-                ViewBag.data = items;
+                ViewBag.items = season;
             }
             return View();
         }
@@ -89,6 +90,17 @@ namespace StockManager.UI.Controllers
             if (stock == null)
             {
                 return NotFound();
+            }
+            var items = _context.Supplier.ToList();
+            var season = _context.Season.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            var Sitems = _context.Season.ToList();
+            if (season != null)
+            {
+                ViewBag.items = season;
             }
             return View(stock);
         }

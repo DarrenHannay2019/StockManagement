@@ -110,7 +110,16 @@ namespace StockManager.UI.Controllers
             {
                 return NotFound();
             }
-
+            var items = _context.Warehouse.ToList();
+            var StockItems = _context.Stock.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
             var warehouseReturn = await _context.WarehouseReturn.SingleOrDefaultAsync(m => m.WarehouseReturnID == id);
             if (warehouseReturn == null)
             {

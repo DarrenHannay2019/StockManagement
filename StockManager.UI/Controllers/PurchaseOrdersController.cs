@@ -97,7 +97,7 @@ namespace StockManager.UI.Controllers
             }
             if (Suppliers != null)
             {
-                ViewBag.Suplier = Suppliers;
+                ViewBag.Supplier = Suppliers;
             }
             return View();
         }
@@ -127,7 +127,26 @@ namespace StockManager.UI.Controllers
             {
                 return NotFound();
             }
-
+            var items = _context.Warehouse.ToList();
+            var StockItems = _context.Stock.ToList();
+            var Suppliers = _context.Supplier.ToList();
+            var SeasonsList = _context.Season.ToList();
+            if (SeasonsList != null)
+            {
+                ViewBag.Season = SeasonsList;
+            }
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+            if (StockItems != null)
+            {
+                ViewBag.Stock = StockItems;
+            }
+            if (Suppliers != null)
+            {
+                ViewBag.Supplier = Suppliers;
+            }
             var deliveries = await _context.PurchaseOrder.SingleOrDefaultAsync(m => m.DeliveryID == id);
             if (deliveries == null)
             {

@@ -22,17 +22,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="FromWarehouseRef" class="control-label"></label>
-                @Html.DropDownList("FromWarehouseRef", new SelectList(ViewBag.items, "WarehouseRef", "WarehouseName"))
+                @Html.DropDownList("FromWarehouseRef", new SelectList(ViewBag.Data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="FromWarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToWarehouseRef" class="control-label"></label>
-                @Html.DropDownList("ToWarehouseRef", new SelectList(ViewBag.items, "WarehouseRef", "WarehouseName"))
+                @Html.DropDownList("ToWarehouseRef", new SelectList(ViewBag.Data, "WarehouseRef", "WarehouseName"))
                 <span asp-validation-for="ToWarehouseRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StockCode" class="control-label"></label>
-                @Html.DropDownList("StockCode", new SelectList(ViewBag.data, "StockCode", "StockCode"))
+                @Html.DropDownList("StockCode", new SelectList(ViewBag.Stock, "StockCode", "StockCode"))
                 <span asp-validation-for="StockCode" class="text-danger"></span>
             </div>
         </div>

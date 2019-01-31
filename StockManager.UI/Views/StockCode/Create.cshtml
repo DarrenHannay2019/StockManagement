@@ -17,12 +17,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="SupplierRef" class="control-label"></label>
-                @Html.DropDownList("SupplierRef", new SelectList(ViewBag.items, "SupplierRef", "SupplierRef"))
+                @Html.DropDownList("SupplierRef", new SelectList(ViewBag.data, "SupplierRef", "SupplierName"))
                 <span asp-validation-for="SupplierRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Season" class="control-label"></label>
-                @Html.DropDownList("Season", new SelectList(ViewBag.Sitems, "SeasonName", "SeasonName"))
+                @Html.DropDownList("Season", new SelectList(ViewBag.items, "SeasonName", "SeasonName"))
                 <span asp-validation-for="Season" class="text-danger"></span>
             </div>
         </div>
